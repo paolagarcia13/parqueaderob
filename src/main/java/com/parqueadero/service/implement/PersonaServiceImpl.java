@@ -1,46 +1,35 @@
 package com.parqueadero.service.implement;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.parqueadero.model.Persona;
+import com.parqueadero.repository.PersonaRepositorio;
+import com.parqueadero.service.PersonaService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import com.parqueadero.model.Persona;
-import com.parqueadero.repository.PersonaRepository;
-import com.parqueadero.service.IPersonaService;
+import java.util.List;
 
 @Service
-public class PersonaServiceImpl implements IPersonaService{
+@AllArgsConstructor
+public class PersonaServiceImpl implements PersonaService {
+    private final PersonaRepositorio repo;
 
-	@Autowired
-	private PersonaRepository repo;
-	
-	@Override
-	public List<Persona> listar() {
-		return repo.listar();
-	}
+    @Override
+    public Persona insertar(Persona persona) {
+        return repo.save(persona);
+    }
 
-	@Override
-	public void insertar(Persona persona) {
-		repo.insertar(persona);
-	}
+    @Override
+    public List<Persona> listar() {
+        return repo.findAll();
+    }
 
-	@Override
-	public void actualizar(Persona persona) {
-		repo.modificar(persona);
-		
-	}
+    @Override
+    public Persona actualizar(Persona persona) {
+        return repo.save(persona);
+    }
 
-	@Override
-	public void eliminar(int id) {
-		repo.eliminar(id);
-		
-	}
-
-	@Override
-	public List<Persona> listarPorIdentificacion(String identificacion) {
-		
-		return repo.listarPorIdentificacion(identificacion);
-	}
-
+    @Override
+    public void eliminar(Integer id) {
+        repo.deleteById(id);
+    }
 }

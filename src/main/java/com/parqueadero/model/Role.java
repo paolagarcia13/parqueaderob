@@ -1,5 +1,6 @@
 package com.parqueadero.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,16 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@NoArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Persona {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private String nombres;
-	private String identificacion;
-	private String primerApellido;
-	private String segundoApellido;
+    private String role;
 }

@@ -1,13 +1,19 @@
 package com.parqueadero.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
+@Entity
 public class Parqueadero {
-
-	int id;
-	String nombre;
-	String estado;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	private String nombre;
+	private String estado;
 }
